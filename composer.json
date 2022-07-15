@@ -8,5 +8,15 @@
   },
   "require": {
     "ext-soap": "*"
+  },
+  "require-dev": {
+    "vimeo/psalm": "^4.24",
+    "bitbag/coding-standard": "^2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true
+    }
   }
 }
