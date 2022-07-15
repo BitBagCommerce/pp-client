@@ -1,0 +1,12 @@
+{
+  "name": "bitbag/pp-client",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "BitBag\\PPClient\\": "src/"
+    }
+  },
+  "require": {
+    "ext-soap": "*"
+  }
+}
