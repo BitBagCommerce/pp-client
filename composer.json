@@ -11,7 +11,8 @@
   },
   "require-dev": {
     "vimeo/psalm": "^4.24",
-    "bitbag/coding-standard": "^2.0"
+    "bitbag/coding-standard": "^2.0",
+    "phpunit/phpunit": "^9.5"
   },
   "config": {
     "allow-plugins": {

@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 <psalm errorLevel="2">
-    <plugins>
-        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin" />
-    </plugins>
-
     <projectFiles>
         <directory name="src" />
         <ignoreFiles>
@@ -17,5 +13,11 @@
                 <directory name="tests/"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
+
+        <MissingConstructor>
+            <errorLevel type="suppress">
+                <directory name="src/Model/"/>
+            </errorLevel>
+        </MissingConstructor>
     </issueHandlers>
 </psalm>
