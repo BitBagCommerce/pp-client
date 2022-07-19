@@ -9,6 +9,10 @@ abstract class RecordedDelivery extends Shipment implements SoapModelInterface
     public const CATEGORY_ECONOMY = 'EKONOMICZNA';
 
     public const CATEGORY_PRIORITY = 'PRIORYTETOWA';
+    
+    public const PACKAGE_SIZE_A = 'GABARYT_A';
+    
+    public const PACKAGE_SIZE_B = 'GABARYT_B';
 
     private Address $address;
 
