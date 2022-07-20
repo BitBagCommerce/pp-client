@@ -6,6 +6,14 @@ namespace BitBag\PPClient\Model;
 
 final class PostalPackage extends RecordedDelivery implements SoapModelInterface
 {
+    public const PACKAGE_SIZE_A_MAX_DEPTH = 60;
+
+    public const PACKAGE_SIZE_A_MAX_WIDTH = 50;
+
+    public const PACKAGE_SIZE_A_MAX_HEIGHT = 30;
+
+    public const PACKAGE_SIZE_B_MAX_DIMENSIONS = 150;
+    
     private ?Epo $epo = null;
 
     private ?string $libraryForLegalDepositId = null;
