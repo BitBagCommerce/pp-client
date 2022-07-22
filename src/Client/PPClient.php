@@ -7,7 +7,7 @@ namespace BitBag\PPClient\Client;
 use BitBag\PPClient\Factory\Response\AddShipmentResponseFactoryInterface;
 use BitBag\PPClient\Factory\Response\ClearEnvelopeResponseFactoryInterface;
 use BitBag\PPClient\Factory\Response\GetLabelResponseFactoryInterface;
-use BitBag\PPClient\Factory\Response\OriginOfficeResponseFactoryInterface;
+use BitBag\PPClient\Factory\Response\GetOriginOfficeResponseFactoryInterface;
 use BitBag\PPClient\Factory\Response\SendEnvelopeResponseFactoryInterface;
 use BitBag\PPClient\Model\Request\LabelRequest;
 use BitBag\PPClient\Model\Request\SendEnvelopeRequest;
@@ -26,7 +26,7 @@ final class PPClient implements PPClientInterface
         private ClearEnvelopeResponseFactoryInterface $clearEnvelopeResponseFactory,
         private GetLabelResponseFactoryInterface $getLabelResponseFactory,
         private SendEnvelopeResponseFactoryInterface $sendEnvelopeResponseFactory,
-        private OriginOfficeResponseFactoryInterface $originOfficeResponseFactory
+        private GetOriginOfficeResponseFactoryInterface $originOfficeResponseFactory
     ) {
     }
 

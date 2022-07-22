@@ -9,15 +9,15 @@ use BitBag\PPClient\Model\OriginOffice;
 final class GetOriginOfficeResponse
 {
     /** @var OriginOffice[] */
-    private array $originOffice;
-    
-    public function getOriginOffice(): array
+    private array $originOffices;
+
+    public function getOriginOffices(): array
     {
-        return $this->originOffice;
+        return $this->originOffices;
     }
-    
-    public function setOriginOffice(array $originOffice): void
+
+    public function setOriginOffices(array $originOffices): void
     {
-        $this->originOffice = $originOffice;
+        $this->originOffices = $originOffices;
     }
 }

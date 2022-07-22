@@ -6,7 +6,7 @@ namespace BitBag\PPClient\Factory\Response;
 
 use BitBag\PPClient\Model\Response\GetOriginOfficeResponse;
 
-interface OriginOfficeResponseFactoryInterface
+interface GetOriginOfficeResponseFactoryInterface
 {
     public function create(object $soapResponse): GetOriginOfficeResponse;
 }
