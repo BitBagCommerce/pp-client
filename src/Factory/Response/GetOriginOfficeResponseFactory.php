@@ -23,7 +23,7 @@ final class GetOriginOfficeResponseFactory implements GetOriginOfficeResponseFac
         }
 
         $response = new GetOriginOfficeResponse();
-        $response->setOriginOffice($originOffices);
+        $response->setOriginOffices($originOffices);
 
         return $response;
     }
