@@ -7,6 +7,7 @@ namespace BitBag\PPClient\Client;
 use BitBag\PPClient\Factory\Response\AddShipmentResponseFactoryInterface;
 use BitBag\PPClient\Factory\Response\ClearEnvelopeResponseFactoryInterface;
 use BitBag\PPClient\Factory\Response\GetLabelResponseFactoryInterface;
+use BitBag\PPClient\Factory\Response\OriginOfficeResponseFactoryInterface;
 use BitBag\PPClient\Factory\Response\SendEnvelopeResponseFactoryInterface;
 use BitBag\PPClient\Model\Request\LabelRequest;
 use BitBag\PPClient\Model\Request\SendEnvelopeRequest;
@@ -14,6 +15,7 @@ use BitBag\PPClient\Model\Request\ShipmentRequest;
 use BitBag\PPClient\Model\Response\AddShipmentResponse;
 use BitBag\PPClient\Model\Response\ClearEnvelopeResponse;
 use BitBag\PPClient\Model\Response\GetLabelResponse;
+use BitBag\PPClient\Model\Response\GetOriginOfficeResponse;
 use BitBag\PPClient\Model\Response\SendEnvelopeResponse;
 
 final class PPClient implements PPClientInterface
@@ -23,7 +25,8 @@ final class PPClient implements PPClientInterface
         private AddShipmentResponseFactoryInterface $addShipmentResponseFactory,
         private ClearEnvelopeResponseFactoryInterface $clearEnvelopeResponseFactory,
         private GetLabelResponseFactoryInterface $getLabelResponseFactory,
-        private SendEnvelopeResponseFactoryInterface $sendEnvelopeResponseFactory
+        private SendEnvelopeResponseFactoryInterface $sendEnvelopeResponseFactory,
+        private OriginOfficeResponseFactoryInterface $originOfficeResponseFactory
     ) {
     }
 
@@ -53,5 +56,12 @@ final class PPClient implements PPClientInterface
         $response = $this->soapClient->clearEnvelope();
 
         return $this->clearEnvelopeResponseFactory->create($response);
+    }
+
+    public function getOriginOffice(): GetOriginOfficeResponse
+    {
+        $response = $this->soapClient->getUrzedyNadania();
+
+        return $this->originOfficeResponseFactory->create($response);
     }
 }
