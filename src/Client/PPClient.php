@@ -26,7 +26,7 @@ final class PPClient implements PPClientInterface
         private ClearEnvelopeResponseFactoryInterface $clearEnvelopeResponseFactory,
         private GetLabelResponseFactoryInterface $getLabelResponseFactory,
         private SendEnvelopeResponseFactoryInterface $sendEnvelopeResponseFactory,
-        private GetOriginOfficeResponseFactoryInterface $originOfficeResponseFactory
+        private GetOriginOfficeResponseFactoryInterface $getOriginOfficeResponseFactory
     ) {
     }
 
@@ -62,6 +62,6 @@ final class PPClient implements PPClientInterface
     {
         $response = $this->soapClient->getUrzedyNadania();
 
-        return $this->originOfficeResponseFactory->create($response);
+        return $this->getOriginOfficeResponseFactory->create($response);
     }
 }
