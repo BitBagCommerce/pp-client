@@ -28,19 +28,12 @@ final class GetLabelResponseFactory implements GetLabelResponseFactoryInterface
             return $response;
         }
 
-        $labels = [];
+        $label = new AddressLabel();
+        $label->setPdfContent($soapResponse->content ->pdfContent);
+        $label->setShippingNumber($soapResponse->content ->nrNadania);
+        $label->setGuid($soapResponse->content ->guid);
 
-        foreach ($soapResponse->content as $labelData) {
-            $label = new AddressLabel();
-
-            $label->setPdfContent($labelData->pdfContent);
-            $label->setShippingNumber($labelData->nrNadania);
-            $label->setGuid($labelData->guid);
-
-            $labels[] = $label;
-        }
-
-        $response->setAddressLabels($labels);
+        $response->setAddressLabels([$label]);
 
         return $response;
     }
