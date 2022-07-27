@@ -112,8 +112,8 @@ final class CODShipment extends RecordedDelivery implements SoapModelInterface
         $soapModel->kategoria = $this->category;
         $soapModel->gabaryt = $this->packageSize;
         $soapModel->ostroznie = $this->fragile;
-        $soapModel->wartosc = $this->weight;
-        $soapModel->masa = $this->totalAmount;
+        $soapModel->wartosc = $this->totalAmount;
+        $soapModel->masa = $this->weight;
 
         return $soapModel;
     }
