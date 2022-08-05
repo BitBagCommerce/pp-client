@@ -4,12 +4,12 @@ namespace BitBag\PPClient\Model;
 
 final class BusinessDelivery extends RecordedDelivery implements SoapModelInterface
 {
-    private const PACKAGE_SIZE_XS = 'XS';
-    private const PACKAGE_SIZE_S = 'S';
-    private const PACKAGE_SIZE_M = 'M';
-    private const PACKAGE_SIZE_L = 'L';
-    private const PACKAGE_SIZE_XL = 'XL';
-    private const PACKAGE_SIZE_XXL = 'XXL';
+    public const PACKAGE_SIZE_XS = 'XS';
+    public const PACKAGE_SIZE_S = 'S';
+    public const PACKAGE_SIZE_M = 'M';
+    public const PACKAGE_SIZE_L = 'L';
+    public const PACKAGE_SIZE_XL = 'XL';
+    public const PACKAGE_SIZE_XXL = 'XXL';
 
     private ?COD $COD;
 
@@ -23,7 +23,7 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
 
     private bool $checkedByReceiver;
 
-    private ReceivalConfirmation $receivalConfirmation;
+    private BusinessDeliveryConfirmation $businessDeliveryConfirmation;
 
     private bool $delivery;
 
@@ -42,6 +42,14 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
     private bool $fragile;
 
     private string $receivalTransactionCode;
+
+    private string $senderNotificationType;
+
+    private string $senderContactInformation;
+
+    private string $receiverNotificationType;
+
+    private string $receiverContactInformation;
 
     public function getCOD(): ?COD
     {
@@ -103,14 +111,14 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
         $this->checkedByReceiver = $checkedByReceiver;
     }
 
-    public function getReceivalConfirmation(): ReceivalConfirmation
+    public function getBusinessDeliveryConfirmation(): BusinessDeliveryConfirmation
     {
-        return $this->receivalConfirmation;
+        return $this->businessDeliveryConfirmation;
     }
 
-    public function setReceivalConfirmation(ReceivalConfirmation $receivalConfirmation): void
+    public function setBusinessDeliveryConfirmation(BusinessDeliveryConfirmation $businessDeliveryConfirmation): void
     {
-        $this->receivalConfirmation = $receivalConfirmation;
+        $this->businessDeliveryConfirmation = $businessDeliveryConfirmation;
     }
 
     public function isDelivery(): bool
@@ -203,19 +211,59 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
         $this->receivalTransactionCode = $receivalTransactionCode;
     }
 
+    public function getSenderNotificationType(): string
+    {
+        return $this->senderNotificationType;
+    }
+
+    public function setSenderNotificationType(string $senderNotificationType): void
+    {
+        $this->senderNotificationType = $senderNotificationType;
+    }
+
+    public function getSenderContactInformation(): string
+    {
+        return $this->senderContactInformation;
+    }
+
+    public function setSenderContactInformation(string $senderContactInformation): void
+    {
+        $this->senderContactInformation = $senderContactInformation;
+    }
+
+    public function getReceiverNotificationType(): string
+    {
+        return $this->receiverNotificationType;
+    }
+
+    public function setReceiverNotificationType(string $receiverNotificationType): void
+    {
+        $this->receiverNotificationType = $receiverNotificationType;
+    }
+
+    public function getReceiverContactInformation(): string
+    {
+        return $this->receiverContactInformation;
+    }
+
+    public function setReceiverContactInformation(string $receiverContactInformation): void
+    {
+        $this->receiverContactInformation = $receiverContactInformation;
+    }
+
     public function toSoapModel(): object
     {
         $soapModel = parent::toSoapModel();
 
-        $soapModel->pobranie = $this->COD;
-        $soapModel->urzadWydaniaEPrzesylki = $this->pickupPoint;
-        $soapModel->ubezpieczenie = $this->insurance;
+        $soapModel->pobranie = $this->COD?->toSoapModel();
+        $soapModel->urzadWydaniaEPrzesylki = $this->pickupPoint->toSoapModel();
+        $soapModel->ubezpieczenie = $this->insurance->toSoapModel();
         $soapModel->epo = $this->epo;
-        $soapModel->adresDlaZwrotu = $this->returnAddress;
+//        $soapModel->adresDlaZwrotu = $this->returnAddress->toSoapModel();
         $soapModel->sprawdzenieZawartosciPrzesylkiPrzezOdbiorce = $this->checkedByReceiver;
-        $soapModel->potwierdzenieOdbioru = $this->receivalConfirmation;
+        $soapModel->potwierdzenieOdbioru = $this->businessDeliveryConfirmation->toSoapModel();
         $soapModel->doreczenie = $this->delivery;
-        $soapModel->zwrotDokumentow = $this->documentReturn;
+//        $soapModel->zwrotDokumentow = $this->documentReturn->toSoapModel();
         $soapModel->zasadySpecjalne = $this->specialRules;
         $soapModel->posteRestante = $this->posteRestante;
         $soapModel->masa = $this->weight;
@@ -223,6 +271,7 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
         $soapModel->wartosc = $this->totalAmount;
         $soapModel->ostroznie = $this->fragile;
         $soapModel->numerTransakcjiOdbioru = $this->receivalTransactionCode;
+
 
         return $soapModel;
     }

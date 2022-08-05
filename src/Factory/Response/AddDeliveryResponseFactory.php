@@ -7,7 +7,7 @@ namespace BitBag\PPClient\Factory\Response;
 use BitBag\PPClient\Model\AddDeliveryResponseItem;
 use BitBag\PPClient\Model\Response\AddDeliveryResponse;
 
-final class AddShipmentResponseFactory implements AddShipmentResponseFactoryInterface
+final class AddDeliveryResponseFactory implements AddDeliveryResponseFactoryInterface
 {
     use ErrorsTrait;
 

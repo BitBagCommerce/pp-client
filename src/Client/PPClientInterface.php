@@ -14,7 +14,7 @@ use BitBag\PPClient\Model\Response\SendEnvelopeResponse;
 
 interface PPClientInterface
 {
-    public function addShipment(DeliveryRequest $shipmentRequest): mixed;
+    public function addDelivery(DeliveryRequest $shipmentRequest): mixed;
 
     public function getLabel(LabelRequest $labelRequest): GetLabelResponse;
 
