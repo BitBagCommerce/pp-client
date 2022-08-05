@@ -6,7 +6,7 @@ namespace BitBag\PPClient\Model;
 
 final class PocztexCourier extends Pocztex implements SoapModelInterface
 {
-    /** @var Pocztex[] $subPackages */
+    /** @var Pocztex[] */
     private array $subPackages = [];
 
     private ?PostOffice $deliveryPackagePoint = null;
