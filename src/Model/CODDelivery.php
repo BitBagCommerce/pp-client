@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BitBag\PPClient\Model;
 
-final class CODShipment extends RecordedDelivery implements SoapModelInterface
+final class CODDelivery extends RecordedDelivery implements SoapModelInterface
 {
     private ?COD $cod = null;
 

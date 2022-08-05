@@ -6,7 +6,7 @@ namespace BitBag\PPClient\Model;
 
 use BitBag\PPClient\Model\Response\ErrorAwareResponseInterface;
 
-final class AddShipmentResponseItem implements ErrorAwareResponseInterface
+final class AddDeliveryResponseItem implements ErrorAwareResponseInterface
 {
     /** @var Error[] */
     private array $errors = [];

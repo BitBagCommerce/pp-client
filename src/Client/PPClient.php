@@ -11,8 +11,8 @@ use BitBag\PPClient\Factory\Response\GetOriginOfficeResponseFactoryInterface;
 use BitBag\PPClient\Factory\Response\SendEnvelopeResponseFactoryInterface;
 use BitBag\PPClient\Model\Request\LabelRequest;
 use BitBag\PPClient\Model\Request\SendEnvelopeRequest;
-use BitBag\PPClient\Model\Request\ShipmentRequest;
-use BitBag\PPClient\Model\Response\AddShipmentResponse;
+use BitBag\PPClient\Model\Request\DeliveryRequest;
+use BitBag\PPClient\Model\Response\AddDeliveryResponse;
 use BitBag\PPClient\Model\Response\ClearEnvelopeResponse;
 use BitBag\PPClient\Model\Response\GetLabelResponse;
 use BitBag\PPClient\Model\Response\GetOriginOfficeResponse;
@@ -30,7 +30,7 @@ final class PPClient implements PPClientInterface
     ) {
     }
 
-    public function addShipment(ShipmentRequest $shipmentRequest): AddShipmentResponse
+    public function addShipment(DeliveryRequest $shipmentRequest): AddDeliveryResponse
     {
         $response = $this->soapClient->addShipment($shipmentRequest->toSoapModel());
 
@@ -63,5 +63,10 @@ final class PPClient implements PPClientInterface
         $response = $this->soapClient->getUrzedyNadania();
 
         return $this->getOriginOfficeResponseFactory->create($response);
+    }
+
+    public function getPostOffices(): object
+    {
+        return $this->soapClient->getUrzedyWydajaceEPrzesylki();
     }
 }

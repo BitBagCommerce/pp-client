@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace BitBag\PPClient\Model;
 
-abstract class RecordedDelivery extends Shipment implements SoapModelInterface
+abstract class RecordedDelivery extends Delivery implements SoapModelInterface
 {
     public const CATEGORY_ECONOMY = 'EKONOMICZNA';
 
     public const CATEGORY_PRIORITY = 'PRIORYTETOWA';
-    
+
     public const PACKAGE_SIZE_A = 'GABARYT_A';
-    
+
     public const PACKAGE_SIZE_B = 'GABARYT_B';
 
     private Address $address;

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace BitBag\PPClient\Factory\Response;
 
-use BitBag\PPClient\Model\AddShipmentResponseItem;
-use BitBag\PPClient\Model\Response\AddShipmentResponse;
+use BitBag\PPClient\Model\AddDeliveryResponseItem;
+use BitBag\PPClient\Model\Response\AddDeliveryResponse;
 
 final class AddShipmentResponseFactory implements AddShipmentResponseFactoryInterface
 {
     use ErrorsTrait;
 
-    public function create(object $soapResponse): AddShipmentResponse
+    public function create(object $soapResponse): AddDeliveryResponse
     {
-        $response = new AddShipmentResponse();
+        $response = new AddDeliveryResponse();
 
         $returnValue = $soapResponse->retval;
 
@@ -26,7 +26,7 @@ final class AddShipmentResponseFactory implements AddShipmentResponseFactoryInte
             $itemErrors = $item->error ?? [];
             $errors = \is_array($itemErrors) ? $itemErrors : [$itemErrors];
 
-            $addShipmentResponseItem = new AddShipmentResponseItem();
+            $addShipmentResponseItem = new AddDeliveryResponseItem();
             $addShipmentResponseItems[] = $addShipmentResponseItem;
 
             if ([] !== $errors) {
@@ -40,7 +40,7 @@ final class AddShipmentResponseFactory implements AddShipmentResponseFactoryInte
             $addShipmentResponseItem->setGuid($item->guid ?? null);
         }
 
-        $response->setAddShipmentResponseItems($addShipmentResponseItems);
+        $response->setAddDeliveryResponseItems($addShipmentResponseItems);
 
         return $response;
     }
