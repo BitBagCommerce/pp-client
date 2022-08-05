@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace BitBag\PPClient\Model;
 
-final class PaidByReceiver implements SoapModelInterface
+final class BusinessDeliveryConfirmation implements SoapModelInterface
 {
     private string $type;
 
-    private ?PaidByReceiverCard $card = null;
+    private int $totalAmount;
 
     public function getType(): string
     {
@@ -20,22 +20,22 @@ final class PaidByReceiver implements SoapModelInterface
         $this->type = $type;
     }
 
-    public function getCard(): ?PaidByReceiverCard
+    public function getTotalAmount(): int
     {
-        return $this->card;
+        return $this->totalAmount;
     }
 
-    public function setCard(?PaidByReceiverCard $card): void
+    public function setTotalAmount(int $totalAmount): void
     {
-        $this->card = $card;
+        $this->totalAmount = $totalAmount;
     }
 
     public function toSoapModel(): object
     {
         $soapModel = new \stdClass();
 
-        $soapModel->typ = $this->type;
-        $soapModel->karta = $this->card?->toSoapModel();
+        $soapModel->sposob = $this->type;
+        $soapModel->ilosc = $this->totalAmount;
 
         return $soapModel;
     }

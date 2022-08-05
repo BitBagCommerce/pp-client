@@ -6,7 +6,7 @@ namespace BitBag\PPClient\Model\Request;
 
 use BitBag\PPClient\Model\SoapModelInterface;
 
-final class ShipmentRequest implements SoapModelInterface
+final class BusinessDeliveryRequest
 {
     private array $packages;
 
@@ -40,7 +40,7 @@ final class ShipmentRequest implements SoapModelInterface
             return new \SoapVar(
                 $package->toSoapModel(),
                 \XSD_ANYTYPE,
-                'paczkaPocztowaType',
+                'przesylkaBiznesowaType',
                 'http://e-nadawca.poczta-polska.pl'
             );
         }, $this->packages);

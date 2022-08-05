@@ -29,9 +29,9 @@ final class GetLabelResponseFactory implements GetLabelResponseFactoryInterface
         }
 
         $label = new AddressLabel();
-        $label->setPdfContent($soapResponse->content ->pdfContent);
-        $label->setShippingNumber($soapResponse->content ->nrNadania);
-        $label->setGuid($soapResponse->content ->guid);
+        $label->setPdfContent($soapResponse->content->pdfContent);
+        $label->setShippingNumber($soapResponse->content->nrNadania);
+        $label->setGuid($soapResponse->content->guid);
 
         $response->setAddressLabels([$label]);
 
