@@ -20,27 +20,27 @@ final class AddDeliveryResponseFactory implements AddDeliveryResponseFactoryInte
         $items = \is_array($returnValue) ? $returnValue : [$returnValue];
         $items = \array_filter($items, fn (object $item) => [] !== (array) $item);
 
-        $addShipmentResponseItems = [];
+        $addDeliveryResponseItems = [];
 
         foreach ($items as $item) {
             $itemErrors = $item->error ?? [];
             $errors = \is_array($itemErrors) ? $itemErrors : [$itemErrors];
 
-            $addShipmentResponseItem = new AddDeliveryResponseItem();
-            $addShipmentResponseItems[] = $addShipmentResponseItem;
+            $addDeliveryResponseItem = new AddDeliveryResponseItem();
+            $addDeliveryResponseItems[] = $addDeliveryResponseItem;
 
             if ([] !== $errors) {
-                $this->setErrors($errors, $addShipmentResponseItem);
+                $this->setErrors($errors, $addDeliveryResponseItem);
 
                 continue;
             }
 
-            $addShipmentResponseItem->setShippingNumber($item->numerNadania ?? null);
-            $addShipmentResponseItem->setReceptionTransactionNumber($item->numerTransakcjiOdbioru ?? null);
-            $addShipmentResponseItem->setGuid($item->guid ?? null);
+            $addDeliveryResponseItem->setShippingNumber($item->numerNadania ?? null);
+            $addDeliveryResponseItem->setReceptionTransactionNumber($item->numerTransakcjiOdbioru ?? null);
+            $addDeliveryResponseItem->setGuid($item->guid ?? null);
         }
 
-        $response->setAddDeliveryResponseItems($addShipmentResponseItems);
+        $response->setAddDeliveryResponseItems($addDeliveryResponseItems);
 
         return $response;
     }

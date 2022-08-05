@@ -31,9 +31,9 @@ final class PPClient implements PPClientInterface
     ) {
     }
 
-    public function addDelivery(DeliveryRequest $shipmentRequest): AddDeliveryResponse
+    public function addDelivery(DeliveryRequest $deliveryRequest): AddDeliveryResponse
     {
-        $response = $this->soapClient->addShipment($shipmentRequest->toSoapModel());
+        $response = $this->soapClient->addShipment($deliveryRequest->toSoapModel());
 
         return $this->addDeliveryResponseFactory->create($response);
     }
