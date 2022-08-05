@@ -1,5 +1,6 @@
 {
   "name": "bitbag/pp-client",
+  "description": "Poczta Polska SOAP client",
   "type": "project",
   "autoload": {
     "psr-4": {
