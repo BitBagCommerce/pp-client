@@ -76,12 +76,12 @@ abstract class Pocztex extends RecordedDelivery implements SoapModelInterface
         $this->confirmationReceipt = $confirmationReceipt;
     }
 
-    public function getInsurance(): Insurance
+    public function getInsurance(): ?Insurance
     {
         return $this->insurance;
     }
 
-    public function setInsurance(Insurance $insurance): void
+    public function setInsurance(?Insurance $insurance): void
     {
         $this->insurance = $insurance;
     }
