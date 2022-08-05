@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace BitBag\PPClient\Model;
 
@@ -37,5 +39,4 @@ final class BusinessDeliveryConfirmation implements SoapModelInterface
 
         return $soapModel;
     }
-
 }

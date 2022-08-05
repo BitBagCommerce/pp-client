@@ -1,14 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace BitBag\PPClient\Model;
 
 final class BusinessDelivery extends RecordedDelivery implements SoapModelInterface
 {
     public const PACKAGE_SIZE_XS = 'XS';
+
     public const PACKAGE_SIZE_S = 'S';
+
     public const PACKAGE_SIZE_M = 'M';
+
     public const PACKAGE_SIZE_L = 'L';
+
     public const PACKAGE_SIZE_XL = 'XL';
+
     public const PACKAGE_SIZE_XXL = 'XXL';
 
     private ?COD $COD;
@@ -258,7 +265,6 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
         $soapModel->wartosc = $this->totalAmount;
         $soapModel->ostroznie = $this->fragile;
         $soapModel->numerTransakcjiOdbioru = $this->receivalTransactionCode;
-
 
         return $soapModel;
     }
