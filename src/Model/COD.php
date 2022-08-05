@@ -10,13 +10,13 @@ final class COD implements SoapModelInterface
 
     public const COD_TYPE_BANK_TRANSFER = 'RACHUNEK_BANKOWY';
 
-    private string $codType = self::COD_TYPE_BANK_TRANSFER;
+    private string $codType = self::COD_TYPE_POSTAL_ORDER;
 
     private int $totalAmount;
 
-    private string $nrb;
+    private ?string $nrb = null;
 
-    private string $description;
+    private ?string $description = null;
 
     private bool $toBeCheckedByReceiver;
 
@@ -40,22 +40,22 @@ final class COD implements SoapModelInterface
         $this->totalAmount = $totalAmount;
     }
 
-    public function getNrb(): string
+    public function getNrb(): ?string
     {
         return $this->nrb;
     }
 
-    public function setNrb(string $nrb): void
+    public function setNrb(?string $nrb): void
     {
         $this->nrb = $nrb;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }

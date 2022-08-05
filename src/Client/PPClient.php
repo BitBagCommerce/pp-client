@@ -12,6 +12,7 @@ use BitBag\PPClient\Factory\Response\SendEnvelopeResponseFactoryInterface;
 use BitBag\PPClient\Model\Request\BusinessDeliveryRequest;
 use BitBag\PPClient\Model\Request\DeliveryRequest;
 use BitBag\PPClient\Model\Request\LabelRequest;
+use BitBag\PPClient\Model\Request\PocztexDeliveryRequest;
 use BitBag\PPClient\Model\Request\SendEnvelopeRequest;
 use BitBag\PPClient\Model\Response\AddDeliveryResponse;
 use BitBag\PPClient\Model\Response\ClearEnvelopeResponse;
@@ -41,6 +42,13 @@ final class PPClient implements PPClientInterface
     public function addBusinessDelivery(BusinessDeliveryRequest $businessDeliveryRequest): AddDeliveryResponse
     {
         $response = $this->soapClient->addShipment($businessDeliveryRequest->toSoapModel());
+
+        return $this->addDeliveryResponseFactory->create($response);
+    }
+
+    public function addPocztexDelivery(PocztexDeliveryRequest $pocztexDeliveryRequest): AddDeliveryResponse
+    {
+        $response = $this->soapClient->addShipment($pocztexDeliveryRequest->toSoapModel());
 
         return $this->addDeliveryResponseFactory->create($response);
     }
