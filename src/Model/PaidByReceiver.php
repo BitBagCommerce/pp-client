@@ -8,7 +8,7 @@ final class PaidByReceiver implements SoapModelInterface
 {
     private string $type;
 
-    private PaidByReceiverCard $card;
+    private ?PaidByReceiverCard $card = null;
 
     public function getType(): string
     {
@@ -20,12 +20,12 @@ final class PaidByReceiver implements SoapModelInterface
         $this->type = $type;
     }
 
-    public function getCard(): PaidByReceiverCard
+    public function getCard(): ?PaidByReceiverCard
     {
         return $this->card;
     }
 
-    public function setCard(PaidByReceiverCard $card): void
+    public function setCard(?PaidByReceiverCard $card): void
     {
         $this->card = $card;
     }
@@ -35,7 +35,7 @@ final class PaidByReceiver implements SoapModelInterface
         $soapModel = new \stdClass();
 
         $soapModel->typ = $this->type;
-        $soapModel->karta = $this->card->toSoapModel();
+        $soapModel->karta = $this->card?->toSoapModel();
 
         return $soapModel;
     }
