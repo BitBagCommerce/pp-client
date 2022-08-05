@@ -15,23 +15,21 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
 
     private PickupPoint $pickupPoint;
 
-    private Insurance $insurance;
+    private ?Insurance $insurance = null;
 
     private Epo $epo;
 
-    private Address $returnAddress;
+    private ?Address $returnAddress = null;
 
-    private bool $checkedByReceiver;
+    private ?bool $checkedByReceiver = null;
 
-    private BusinessDeliveryConfirmation $businessDeliveryConfirmation;
+    private ?BusinessDeliveryConfirmation $businessDeliveryConfirmation = null;
 
-    private bool $delivery;
+    private ?bool $delivery = null;
 
-    private DocumentReturn $documentReturn;
+    private ?DocumentReturn $documentReturn = null;
 
     private ?string $specialRules = null;
-
-    private bool $posteRestante;
 
     private int $weight;
 
@@ -71,12 +69,12 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
         $this->pickupPoint = $pickupPoint;
     }
 
-    public function getInsurance(): Insurance
+    public function getInsurance(): ?Insurance
     {
         return $this->insurance;
     }
 
-    public function setInsurance(Insurance $insurance): void
+    public function setInsurance(?Insurance $insurance): void
     {
         $this->insurance = $insurance;
     }
@@ -91,52 +89,52 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
         $this->epo = $epo;
     }
 
-    public function getReturnAddress(): Address
+    public function getReturnAddress(): ?Address
     {
         return $this->returnAddress;
     }
 
-    public function setReturnAddress(Address $returnAddress): void
+    public function setReturnAddress(?Address $returnAddress): void
     {
         $this->returnAddress = $returnAddress;
     }
 
-    public function isCheckedByReceiver(): bool
+    public function isCheckedByReceiver(): ?bool
     {
         return $this->checkedByReceiver;
     }
 
-    public function setCheckedByReceiver(bool $checkedByReceiver): void
+    public function setCheckedByReceiver(?bool $checkedByReceiver): void
     {
         $this->checkedByReceiver = $checkedByReceiver;
     }
 
-    public function getBusinessDeliveryConfirmation(): BusinessDeliveryConfirmation
+    public function getBusinessDeliveryConfirmation(): ?BusinessDeliveryConfirmation
     {
         return $this->businessDeliveryConfirmation;
     }
 
-    public function setBusinessDeliveryConfirmation(BusinessDeliveryConfirmation $businessDeliveryConfirmation): void
+    public function setBusinessDeliveryConfirmation(?BusinessDeliveryConfirmation $businessDeliveryConfirmation): void
     {
         $this->businessDeliveryConfirmation = $businessDeliveryConfirmation;
     }
 
-    public function isDelivery(): bool
+    public function isDelivery(): ?bool
     {
         return $this->delivery;
     }
 
-    public function setDelivery(bool $delivery): void
+    public function setDelivery(?bool $delivery): void
     {
         $this->delivery = $delivery;
     }
 
-    public function getDocumentReturn(): DocumentReturn
+    public function getDocumentReturn(): ?DocumentReturn
     {
         return $this->documentReturn;
     }
 
-    public function setDocumentReturn(DocumentReturn $documentReturn): void
+    public function setDocumentReturn(?DocumentReturn $documentReturn): void
     {
         $this->documentReturn = $documentReturn;
     }
@@ -149,16 +147,6 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
     public function setSpecialRules(?string $specialRules): void
     {
         $this->specialRules = $specialRules;
-    }
-
-    public function isPosteRestante(): bool
-    {
-        return $this->posteRestante;
-    }
-
-    public function setPosteRestante(bool $posteRestante): void
-    {
-        $this->posteRestante = $posteRestante;
     }
 
     public function getWeight(): int
@@ -257,15 +245,14 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
 
         $soapModel->pobranie = $this->COD?->toSoapModel();
         $soapModel->urzadWydaniaEPrzesylki = $this->pickupPoint->toSoapModel();
-        $soapModel->ubezpieczenie = $this->insurance->toSoapModel();
+        $soapModel->ubezpieczenie = $this->insurance?->toSoapModel();
         $soapModel->epo = $this->epo;
-//        $soapModel->adresDlaZwrotu = $this->returnAddress->toSoapModel();
+        $soapModel->adresDlaZwrotu = $this->returnAddress?->toSoapModel();
         $soapModel->sprawdzenieZawartosciPrzesylkiPrzezOdbiorce = $this->checkedByReceiver;
-        $soapModel->potwierdzenieOdbioru = $this->businessDeliveryConfirmation->toSoapModel();
+        $soapModel->potwierdzenieOdbioru = $this->businessDeliveryConfirmation?->toSoapModel();
         $soapModel->doreczenie = $this->delivery;
-//        $soapModel->zwrotDokumentow = $this->documentReturn->toSoapModel();
+        $soapModel->zwrotDokumentow = $this->documentReturn?->toSoapModel();
         $soapModel->zasadySpecjalne = $this->specialRules;
-        $soapModel->posteRestante = $this->posteRestante;
         $soapModel->masa = $this->weight;
         $soapModel->gabaryt = $this->packageSize;
         $soapModel->wartosc = $this->totalAmount;

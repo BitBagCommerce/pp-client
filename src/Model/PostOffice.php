@@ -16,9 +16,9 @@ class PostOffice implements SoapModelInterface
 
     private string $name;
 
-    private ?string $province = '';
+    private ?string $province = null;
 
-    private string $county;
+    private ?string $county = null;
 
     private string $place;
 
@@ -42,7 +42,7 @@ class PostOffice implements SoapModelInterface
 
     private string $postalNetwork;
 
-    private string $ZPOid;
+    private string $ZPOId;
 
     public function getLocation(): ?GeographicLocation
     {
@@ -224,6 +224,16 @@ class PostOffice implements SoapModelInterface
         $this->postalNetwork = $postalNetwork;
     }
 
+    public function getZPOId(): string
+    {
+        return $this->ZPOId;
+    }
+
+    public function setZPOId(string $ZPOId): void
+    {
+        $this->ZPOId = $ZPOId;
+    }
+
     public function toSoapModel(): object
     {
         $soapModel = new \stdClass();
@@ -246,6 +256,7 @@ class PostOffice implements SoapModelInterface
         $soapModel->powiadomienieSMS = $this->SMSnotification;
         $soapModel->punktWydaniaPrzesylkiBiznesowejPlus = $this->businessDeliveryPlusPickupPoint;
         $soapModel->punktWydaniaPrzesylkiBiznesowej = $this->businessDeliveryPickupPoint;
+        $soapModel->idZPO = $this->ZPOId;
 
         return $soapModel;
     }
