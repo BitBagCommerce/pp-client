@@ -6,7 +6,7 @@ namespace BitBag\PPClient\Model\Request;
 
 use BitBag\PPClient\Model\SoapModelInterface;
 
-final class ShipmentRequest implements SoapModelInterface
+final class DeliveryRequest implements SoapModelInterface
 {
     private array $packages;
 

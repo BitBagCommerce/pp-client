@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BitBag\PPClient\Model;
 
-abstract class Shipment implements SoapModelInterface
+abstract class Delivery implements SoapModelInterface
 {
     private ?PaidByReceiver $paidByReceiver = null;
 

@@ -6,36 +6,36 @@ namespace BitBag\PPClient\Model;
 
 final class GeographicLocation implements SoapModelInterface
 {
-    public GeographicCoordinate $length;
+    public GeographicCoordinate $longitude;
 
-    public GeographicCoordinate $width;
+    public GeographicCoordinate $latitude;
 
-    public function getLength(): GeographicCoordinate
+    public function getLongitude(): GeographicCoordinate
     {
-        return $this->length;
+        return $this->longitude;
     }
 
-    public function setLength(GeographicCoordinate $length): void
+    public function setLongitude(GeographicCoordinate $longitude): void
     {
-        $this->length = $length;
+        $this->longitude = $longitude;
     }
 
-    public function getWidth(): GeographicCoordinate
+    public function getLatitude(): GeographicCoordinate
     {
-        return $this->width;
+        return $this->latitude;
     }
 
-    public function setWidth(GeographicCoordinate $width): void
+    public function setLatitude(GeographicCoordinate $latitude): void
     {
-        $this->width = $width;
+        $this->latitude = $latitude;
     }
 
     public function toSoapModel(): object
     {
         $soapModel = new \stdClass();
 
-        $soapModel->dlugosc = $this->length->toSoapModel();
-        $soapModel->szerokosc = $this->width->toSoapModel();
+        $soapModel->dlugosc = $this->longitude->toSoapModel();
+        $soapModel->szerokosc = $this->latitude->toSoapModel();
 
         return $soapModel;
     }

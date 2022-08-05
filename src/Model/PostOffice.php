@@ -6,9 +6,9 @@ namespace BitBag\PPClient\Model;
 
 class PostOffice implements SoapModelInterface
 {
-    private ?GeographicLocation $location;
+    private ?GeographicLocation $location = null;
 
-    private ?DeliveryPath $deliveryPath;
+    private ?DeliveryPath $deliveryPath = null;
 
     private int $id;
 
@@ -16,9 +16,9 @@ class PostOffice implements SoapModelInterface
 
     private string $name;
 
-    private ?string $province;
+    private ?string $province = '';
 
-    private ?string $district;
+    private string $county;
 
     private string $place;
 
@@ -34,24 +34,22 @@ class PostOffice implements SoapModelInterface
 
     private string $printoutName;
 
-    private bool $pickupPoint;
-
     private bool $SMSnotification;
 
     private bool $businessDeliveryPlusPickupPoint;
 
     private bool $businessDeliveryPickupPoint;
 
-    private PostalNetworkEnum $postalNetwork;
+    private string $postalNetwork;
 
     private string $ZPOid;
 
-    public function getLocation(): GeographicLocation
+    public function getLocation(): ?GeographicLocation
     {
         return $this->location;
     }
 
-    public function setLocation(GeographicLocation $location): void
+    public function setLocation(?GeographicLocation $location): void
     {
         $this->location = $location;
     }
@@ -106,14 +104,14 @@ class PostOffice implements SoapModelInterface
         $this->province = $province;
     }
 
-    public function getDistrict(): ?string
+    public function getCounty(): string
     {
-        return $this->district;
+        return $this->county;
     }
 
-    public function setDistrict(?string $district): void
+    public function setCounty(string $county): void
     {
-        $this->district = $district;
+        $this->county = $county;
     }
 
     public function getPlace(): string
@@ -186,16 +184,6 @@ class PostOffice implements SoapModelInterface
         $this->printoutName = $printoutName;
     }
 
-    public function isPickupPoint(): bool
-    {
-        return $this->pickupPoint;
-    }
-
-    public function setPickupPoint(bool $pickupPoint): void
-    {
-        $this->pickupPoint = $pickupPoint;
-    }
-
     public function isSMSnotification(): bool
     {
         return $this->SMSnotification;
@@ -226,37 +214,28 @@ class PostOffice implements SoapModelInterface
         $this->businessDeliveryPickupPoint = $businessDeliveryPickupPoint;
     }
 
-    public function getPostalNetwork(): PostalNetworkEnum
+    public function getPostalNetwork(): string
     {
         return $this->postalNetwork;
     }
 
-    public function setPostalNetwork(PostalNetworkEnum $postalNetwork): void
+    public function setPostalNetwork(string $postalNetwork): void
     {
         $this->postalNetwork = $postalNetwork;
-    }
-
-    public function getZPOid(): string
-    {
-        return $this->ZPOid;
-    }
-
-    public function setZPOid(string $ZPOid): void
-    {
-        $this->ZPOid = $ZPOid;
     }
 
     public function toSoapModel(): object
     {
         $soapModel = new \stdClass();
 
-        $soapModel->lokalizacjaGeograficzna = $this->location->toSoapModel();
+        $soapModel->lokalizacjaGeograficzna = $this->location?->toSoapModel();
+        $soapModel->siecPlacowek = $this->postalNetwork;
         $soapModel->deliveryPath = $this->deliveryPath;
         $soapModel->id = $this->id;
         $soapModel->prefixNazwy = $this->prefix;
         $soapModel->nazwa = $this->name;
         $soapModel->wojewodztwo = $this->province;
-        $soapModel->powiat = $this->district;
+        $soapModel->powiat = $this->county;
         $soapModel->miejsce = $this->place;
         $soapModel->kodPocztowy = $this->postCode;
         $soapModel->miejscowosc = $this->city;
@@ -264,7 +243,6 @@ class PostOffice implements SoapModelInterface
         $soapModel->numerDomu = $this->houseNumber;
         $soapModel->numerLokalu = $this->flatNumber;
         $soapModel->nazwaWydruk = $this->printoutName;
-        $soapModel->punktWydaniaEPrzesylki = $this->pickupPoint;
         $soapModel->powiadomienieSMS = $this->SMSnotification;
         $soapModel->punktWydaniaPrzesylkiBiznesowejPlus = $this->businessDeliveryPlusPickupPoint;
         $soapModel->punktWydaniaPrzesylkiBiznesowej = $this->businessDeliveryPickupPoint;
