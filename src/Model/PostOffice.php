@@ -54,12 +54,12 @@ class PostOffice implements SoapModelInterface
         $this->location = $location;
     }
 
-    public function getDeliveryPath(): DeliveryPath
+    public function getDeliveryPath(): ?DeliveryPath
     {
         return $this->deliveryPath;
     }
 
-    public function setDeliveryPath(DeliveryPath $deliveryPath): void
+    public function setDeliveryPath(?DeliveryPath $deliveryPath): void
     {
         $this->deliveryPath = $deliveryPath;
     }
@@ -104,12 +104,12 @@ class PostOffice implements SoapModelInterface
         $this->province = $province;
     }
 
-    public function getCounty(): string
+    public function getCounty(): ?string
     {
         return $this->county;
     }
 
-    public function setCounty(string $county): void
+    public function setCounty(?string $county): void
     {
         $this->county = $county;
     }
