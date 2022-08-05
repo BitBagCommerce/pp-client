@@ -6,7 +6,7 @@ namespace BitBag\PPClient\Factory\Response;
 
 use BitBag\PPClient\Model\Response\AddDeliveryResponse;
 
-interface AddShipmentResponseFactoryInterface
+interface AddDeliveryResponseFactoryInterface
 {
     public function create(object $soapResponse): AddDeliveryResponse;
 }
