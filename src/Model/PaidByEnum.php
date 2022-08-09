@@ -6,7 +6,7 @@ namespace BitBag\PPClient\Model;
 
 final class PaidByEnum
 {
-    public const ADDRESSEE = 'ADRESAT';
+    public const RECEIVER = 'ADRESAT';
 
     public const SENDER = 'NADAWCA';
 }
