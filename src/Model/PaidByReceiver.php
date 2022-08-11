@@ -35,7 +35,10 @@ final class PaidByReceiver implements SoapModelInterface
         $soapModel = new \stdClass();
 
         $soapModel->typ = $this->type;
-        $soapModel->karta = $this->card?->toSoapModel();
+
+        if (null !== $this->card) {
+            $soapModel->karta = $this->card->toSoapModel();
+        }
 
         return $soapModel;
     }

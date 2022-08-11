@@ -84,8 +84,15 @@ final class PocztexCourier extends Pocztex implements SoapModelInterface
         $soapModel = parent::toSoapModel();
 
         $soapModel->subPrzesylka = $this->subPackages;
-        $soapModel->punktOdbioru = $this->deliveryPackagePoint?->toSoapModel();
-        $soapModel->punktNadania = $this->senderPackagePoint?->toSoapModel();
+
+        if (null !== $this->deliveryPackagePoint) {
+            $soapModel->punktOdbioru = $this->deliveryPackagePoint->toSoapModel();
+        }
+
+        if (null !== $this->senderPackagePoint) {
+            $soapModel->punktNadania = $this->senderPackagePoint->toSoapModel();
+        }
+
         $soapModel->kopertaPocztex = $this->envelopePocztex;
         $soapModel->godzinaDoreczenia = $this->deliveryTime;
         $soapModel->doreczenieWeWskazanymDniu = $this->deliveryAtSelectedDate;

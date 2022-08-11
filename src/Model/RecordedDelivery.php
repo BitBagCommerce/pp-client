@@ -103,8 +103,15 @@ abstract class RecordedDelivery extends Delivery implements SoapModelInterface
         $soapModel = parent::toSoapModel();
 
         $soapModel->adres = $this->address->toSoapModel();
-        $soapModel->nadawca = $this->sender?->toSoapModel();
-        $soapModel->relatedToAllegro = $this->relatedToAllegro?->toSoapModel();
+
+        if (null !== $this->sender) {
+            $soapModel->nadawca = $this->sender->toSoapModel();
+        }
+
+        if (null !== $this->relatedToAllegro) {
+            $soapModel->relatedToAllegro = $this->relatedToAllegro->toSoapModel();
+        }
+
         $soapModel->numerNadania = $this->shippingNumber;
         $soapModel->sygnatura = $this->signature;
         $soapModel->terminSprawy = $this->hearingDate;

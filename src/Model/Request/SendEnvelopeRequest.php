@@ -65,7 +65,10 @@ final class SendEnvelopeRequest implements SoapModelInterface
         $soapModel->urzadNadania = $this->parcelOriginOffice;
         $soapModel->pakiet = [];
         $soapModel->idBufor = $this->bufferId;
-        $soapModel->profil = $this->profile?->toSoapModel();
+
+        if (null !== $this->profile) {
+            $soapModel->profil = $this->profile->toSoapModel();
+        }
 
         return $soapModel;
     }

@@ -94,7 +94,10 @@ abstract class Delivery implements SoapModelInterface
     {
         $soapModel = new \stdClass();
 
-        $soapModel->oplacaOdbiorca = $this->paidByReceiver?->toSoapModel();
+        if (null !== $this->paidByReceiver) {
+            $soapModel->oplacaOdbiorca = $this->paidByReceiver->toSoapModel();
+        }
+
         $soapModel->mpk = $this->costCenter;
         $soapModel->guid = $this->guid;
         $soapModel->pakietGuid = $this->packetGuid;

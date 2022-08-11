@@ -6,7 +6,10 @@ namespace BitBag\PPClient\Normalizer;
 
 final class ArrayNormalizer implements ArrayNormalizerInterface
 {
-    public function normalize(mixed $data): array
+    /**
+     * @inheritDoc
+     */
+    public function normalize($data): array
     {
         if (\is_array($data)) {
             return $data;
