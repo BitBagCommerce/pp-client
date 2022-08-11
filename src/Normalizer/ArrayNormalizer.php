@@ -12,7 +12,7 @@ final class ArrayNormalizer implements ArrayNormalizerInterface
             return $data;
         }
 
-        if (\is_object($data) && \stdClass::class === $data::class) {
+        if (\is_object($data) && \stdClass::class === \get_class($data)) {
             return [$data];
         }
 

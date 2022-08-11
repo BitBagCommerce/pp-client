@@ -6,11 +6,20 @@ namespace BitBag\PPClient\Client;
 
 final class PPClientConfiguration implements PPClientConfigurationInterface
 {
+    private string $wsdlPath;
+
+    private string $login;
+
+    private string $password;
+
     public function __construct(
-        private string $wsdlPath,
-        private string $login,
-        private string $password
+        string $wsdlPath,
+        string $login,
+        string $password
     ) {
+        $this->password = $password;
+        $this->login = $login;
+        $this->wsdlPath = $wsdlPath;
     }
 
     public function getWsdlPath(): string

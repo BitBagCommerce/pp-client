@@ -29,5 +29,5 @@ interface PPClientInterface
 
     public function clearEnvelope(): ClearEnvelopeResponse;
 
-    public function getOriginOffice(): GetOriginOfficeResponse;
+    public function getOriginOffices(): GetOriginOfficeResponse;
 }
