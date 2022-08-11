@@ -11,8 +11,11 @@ final class SendEnvelopeResponseFactory implements SendEnvelopeResponseFactoryIn
 {
     use ErrorsTrait;
 
-    public function __construct(private ArrayNormalizer $arrayNormalizer)
+    private ArrayNormalizer $arrayNormalizer;
+
+    public function __construct(ArrayNormalizer $arrayNormalizer)
     {
+        $this->arrayNormalizer = $arrayNormalizer;
     }
 
     public function create(object $soapResponse): SendEnvelopeResponse

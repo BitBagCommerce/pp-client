@@ -6,5 +6,8 @@ namespace BitBag\PPClient\Normalizer;
 
 interface ArrayNormalizerInterface
 {
-    public function normalize(mixed $data): array;
+    /**
+     * @param mixed $data
+     */
+    public function normalize($data): array;
 }

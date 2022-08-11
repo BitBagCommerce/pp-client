@@ -17,7 +17,7 @@ use BitBag\PPClient\Model\Response\SendEnvelopeResponse;
 
 interface PPClientInterface
 {
-    public function addDelivery(DeliveryRequest $deliveryRequest): mixed;
+    public function addDelivery(DeliveryRequest $deliveryRequest): AddDeliveryResponse;
 
     public function addBusinessDelivery(BusinessDeliveryRequest $businessDeliveryRequest): AddDeliveryResponse;
 
@@ -29,5 +29,5 @@ interface PPClientInterface
 
     public function clearEnvelope(): ClearEnvelopeResponse;
 
-    public function getOriginOffice(): GetOriginOfficeResponse;
+    public function getOriginOffices(): GetOriginOfficeResponse;
 }

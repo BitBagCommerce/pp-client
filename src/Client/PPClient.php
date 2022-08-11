@@ -22,14 +22,32 @@ use BitBag\PPClient\Model\Response\SendEnvelopeResponse;
 
 final class PPClient implements PPClientInterface
 {
+    private \SoapClient $soapClient;
+
+    private AddDeliveryResponseFactoryInterface $addDeliveryResponseFactory;
+
+    private ClearEnvelopeResponseFactoryInterface $clearEnvelopeResponseFactory;
+
+    private GetLabelResponseFactoryInterface $getLabelResponseFactory;
+
+    private SendEnvelopeResponseFactoryInterface $sendEnvelopeResponseFactory;
+
+    private GetOriginOfficeResponseFactoryInterface $getOriginOfficeResponseFactory;
+
     public function __construct(
-        private \SoapClient $soapClient,
-        private AddDeliveryResponseFactoryInterface $addDeliveryResponseFactory,
-        private ClearEnvelopeResponseFactoryInterface $clearEnvelopeResponseFactory,
-        private GetLabelResponseFactoryInterface $getLabelResponseFactory,
-        private SendEnvelopeResponseFactoryInterface $sendEnvelopeResponseFactory,
-        private GetOriginOfficeResponseFactoryInterface $getOriginOfficeResponseFactory
+        \SoapClient $soapClient,
+        AddDeliveryResponseFactoryInterface $addDeliveryResponseFactory,
+        ClearEnvelopeResponseFactoryInterface $clearEnvelopeResponseFactory,
+        GetLabelResponseFactoryInterface $getLabelResponseFactory,
+        SendEnvelopeResponseFactoryInterface $sendEnvelopeResponseFactory,
+        GetOriginOfficeResponseFactoryInterface $getOriginOfficeResponseFactory
     ) {
+        $this->getOriginOfficeResponseFactory = $getOriginOfficeResponseFactory;
+        $this->sendEnvelopeResponseFactory = $sendEnvelopeResponseFactory;
+        $this->getLabelResponseFactory = $getLabelResponseFactory;
+        $this->clearEnvelopeResponseFactory = $clearEnvelopeResponseFactory;
+        $this->addDeliveryResponseFactory = $addDeliveryResponseFactory;
+        $this->soapClient = $soapClient;
     }
 
     public function addDelivery(DeliveryRequest $deliveryRequest): AddDeliveryResponse
@@ -74,15 +92,10 @@ final class PPClient implements PPClientInterface
         return $this->clearEnvelopeResponseFactory->create($response);
     }
 
-    public function getOriginOffice(): GetOriginOfficeResponse
+    public function getOriginOffices(): GetOriginOfficeResponse
     {
         $response = $this->soapClient->getUrzedyNadania();
 
         return $this->getOriginOfficeResponseFactory->create($response);
-    }
-
-    public function getPostOffices(): object
-    {
-        return $this->soapClient->getUrzedyWydajaceEPrzesylki();
     }
 }

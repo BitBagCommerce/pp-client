@@ -238,7 +238,10 @@ class PostOffice implements SoapModelInterface
     {
         $soapModel = new \stdClass();
 
-        $soapModel->lokalizacjaGeograficzna = $this->location?->toSoapModel();
+        if (null !== $this->location) {
+            $soapModel->lokalizacjaGeograficzna = $this->location->toSoapModel();
+        }
+
         $soapModel->siecPlacowek = $this->postalNetwork;
         $soapModel->deliveryPath = $this->deliveryPath;
         $soapModel->id = $this->id;

@@ -250,15 +250,33 @@ final class BusinessDelivery extends RecordedDelivery implements SoapModelInterf
     {
         $soapModel = parent::toSoapModel();
 
-        $soapModel->pobranie = $this->COD?->toSoapModel();
+        if (null !== $this->COD) {
+            $soapModel->pobranie = $this->COD->toSoapModel();
+        }
+
         $soapModel->urzadWydaniaEPrzesylki = $this->pickupPoint->toSoapModel();
-        $soapModel->ubezpieczenie = $this->insurance?->toSoapModel();
+
+        if (null !== $this->insurance) {
+            $soapModel->ubezpieczenie = $this->insurance->toSoapModel();
+        }
+
         $soapModel->epo = $this->epo;
-        $soapModel->adresDlaZwrotu = $this->returnAddress?->toSoapModel();
+
+        if (null !== $this->returnAddress) {
+            $soapModel->adresDlaZwrotu = $this->returnAddress->toSoapModel();
+        }
+
         $soapModel->sprawdzenieZawartosciPrzesylkiPrzezOdbiorce = $this->checkedByReceiver;
-        $soapModel->potwierdzenieOdbioru = $this->businessDeliveryConfirmation?->toSoapModel();
+
+        if (null !== $this->businessDeliveryConfirmation) {
+            $soapModel->potwierdzenieOdbioru = $this->businessDeliveryConfirmation->toSoapModel();
+        }
         $soapModel->doreczenie = $this->delivery;
-        $soapModel->zwrotDokumentow = $this->documentReturn?->toSoapModel();
+
+        if (null !== $this->documentReturn) {
+            $soapModel->zwrotDokumentow = $this->documentReturn->toSoapModel();
+        }
+
         $soapModel->zasadySpecjalne = $this->specialRules;
         $soapModel->masa = $this->weight;
         $soapModel->gabaryt = $this->packageSize;

@@ -106,7 +106,10 @@ final class CODDelivery extends RecordedDelivery implements SoapModelInterface
     {
         $soapModel = parent::toSoapModel();
 
-        $soapModel->pobranie = $this->cod?->toSoapModel();
+        if (null !== $this->cod) {
+            $soapModel->pobranie = $this->cod->toSoapModel();
+        }
+
         $soapModel->posteRestante = $this->posteRestante;
         $soapModel->iloscPotwierdzenOdbioru = $this->numberOfDeliveryConfirmations;
         $soapModel->kategoria = $this->category;

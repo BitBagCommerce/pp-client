@@ -250,23 +250,46 @@ abstract class Pocztex extends RecordedDelivery implements SoapModelInterface
     {
         $soapModel = parent::toSoapModel();
 
-        $soapModel->pobranie = $this->cod?->toSoapModel();
-        $soapModel->potwierdzenieDoreczenia = $this->confirmationDelivery?->toSoapModel();
-        $soapModel->potwierdzenieOdbioru = $this->confirmationReceipt?->toSoapModel();
-        $soapModel->ubezpieczenie = $this->insurance?->toSoapModel();
+        if (null !== $this->cod) {
+            $soapModel->pobranie = $this->cod->toSoapModel();
+        }
+
+        if (null !== $this->confirmationDelivery) {
+            $soapModel->potwierdzenieDoreczenia = $this->confirmationDelivery->toSoapModel();
+        }
+
+        if (null !== $this->confirmationReceipt) {
+            $soapModel->potwierdzenieOdbioru = $this->confirmationReceipt->toSoapModel();
+        }
+
+        if (null !== $this->insurance) {
+            $soapModel->ubezpieczenie = $this->insurance->toSoapModel();
+        }
         $soapModel->masa = $this->weight;
         $soapModel->wartosc = $this->totalAmount;
         $soapModel->ostroznie = $this->fragile;
         $soapModel->ponadgabaryt = $this->overPackageSize;
         $soapModel->format = $this->pocztexPackageFormat;
         $soapModel->numerPrzesylkiKlienta = $this->numberPackageClient;
-        $soapModel->zwrotDokumentow = $this->documentReturn?->toSoapModel();
+
+        if (null !== $this->documentReturn) {
+            $soapModel->zwrotDokumentow = $this->documentReturn->toSoapModel();
+        }
+
         $soapModel->idDokumentyZwrotneAdresy = $this->idDocumentReturnAddress;
         $soapModel->epo = $this->epo;
-        $soapModel->adresDlaZwrotu = $this->returnAddress?->toSoapModel();
+
+        if (null !== $this->returnAddress) {
+            $soapModel->adresDlaZwrotu = $this->returnAddress->toSoapModel();
+        }
+
         $soapModel->odbiorWSobote = $this->receiveInSaturday;
         $soapModel->zasadySpecjalne = $this->specialRules;
-        $soapModel->zawartosc = $this->packageContents?->toSoapModel();
+
+        if (null !== $this->packageContents) {
+            $soapModel->zawartosc = $this->packageContents->toSoapModel();
+        }
+
         $soapModel->sprawdzenieZawartosciPrzesylkiPrzezOdbiorce = $this->toBeCheckedByReceiver;
         $soapModel->uiszczaOplate = $this->paidBy;
         $soapModel->doreczenieDoRakWlasnych = $this->personalDelivery;
