@@ -1,6 +1,7 @@
 {
   "name": "bitbag/pp-client",
   "description": "Poczta Polska SOAP client",
+  "license": "MIT",
   "type": "project",
   "autoload": {
     "psr-4": {
