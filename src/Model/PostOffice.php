@@ -36,13 +36,13 @@ class PostOffice implements SoapModelInterface
 
     private bool $SMSnotification;
 
-    private bool $businessDeliveryPlusPickupPoint;
+    private bool $businessDeliveryPlusPickupPoint = false;
 
-    private bool $businessDeliveryPickupPoint;
+    private bool $businessDeliveryPickupPoint = false;
 
     private string $postalNetwork;
 
-    private string $ZPOId;
+    private string $ZPOId = '';
 
     public function getLocation(): ?GeographicLocation
     {
