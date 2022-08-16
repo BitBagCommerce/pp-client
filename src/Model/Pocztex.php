@@ -16,7 +16,7 @@ abstract class Pocztex extends RecordedDelivery implements SoapModelInterface
 
     private int $weight;
 
-    private int $totalAmount;
+    private ?int $totalAmount = null;
 
     private bool $fragile = false;
 
@@ -96,12 +96,12 @@ abstract class Pocztex extends RecordedDelivery implements SoapModelInterface
         $this->weight = $weight;
     }
 
-    public function getTotalAmount(): int
+    public function getTotalAmount(): ?int
     {
         return $this->totalAmount;
     }
 
-    public function setTotalAmount(int $totalAmount): void
+    public function setTotalAmount(?int $totalAmount): void
     {
         $this->totalAmount = $totalAmount;
     }
